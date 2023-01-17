@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  vulkan_compiler:
+    build: .
+    #image: /delapf/vulkan_compiler
+    container_name: vulkan_compiler
+    volumes:
+      - ../rve:C:\dev\target
+      #- ../rtve:C:\dev\target
+      #- ../lve:C:\dev\target
