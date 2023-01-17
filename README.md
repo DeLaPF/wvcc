@@ -1,1 +1,1 @@
-# VCC (Vulkan Compiler Container)
+# WVCC (Windows Vulkan Compiler Container)
