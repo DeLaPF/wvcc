@@ -13,8 +13,9 @@ RUN .\VulkanSDK-1.3.236.0-Installer.exe \
     install
 
 # CMake
-RUN curl -LO https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1-windows-x86_64.msi
-RUN msiexec /i C:\cmake-3.25.1-windows-x86_64.msi /passive /norestart
+RUN mkdir CMake
+RUN cd CMake && curl -LO https://github.com/Kitware/CMake/releases/download/v3.26.0-rc1/cmake-3.26.0-rc1-windows-x86_64.zip
+RUN cd CMake && tar -xf cmake-3.26.0-rc1-windows-x86_64.zip
 
 # Libaries
 RUN mkdir dev && mkdir dev\Libraries
@@ -24,14 +25,12 @@ RUN cd dev\Libraries && tar -xf glfw-3.3.8.bin.WIN64.zip
 RUN cd dev\Libraries && tar -xf glm-0.9.9.8.zip
 
 # Mingw64
-RUN curl -LO https://www.7-zip.org/a/7z2201-x64.msi
-RUN msiexec /i C:\7z2201-x64.msi /q INSTALLDIR="C:\7-Zip"
 RUN curl -LO https://github.com/niXman/mingw-builds-binaries/releases/download/12.2.0-rt_v10-rev2/x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2.7z
-RUN 7-zip\7z x x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2.7z
+RUN curl -LO https://www.7-zip.org/a/7zr.exe
+RUN 7zr x x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2.7z
 
 # Add cmake and mingw64 bins to Path
-RUN setx /M PATH "C:\Program Files\CMake\bin;C:\mingw64\bin;%PATH%"
+RUN setx /M PATH "C:\Program Files\CMake\cmake-3.26.0-rc1-windows-x86_64\bin;C:\mingw64\bin;%PATH%"
 
 COPY build.bat .
 ENTRYPOINT ["cmd", "/c", "build.bat"]
-#CMD [ "powershell" ]
