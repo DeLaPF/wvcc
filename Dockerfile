@@ -30,7 +30,7 @@ RUN curl -LO https://www.7-zip.org/a/7zr.exe
 RUN 7zr x x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2.7z
 
 # Add cmake and mingw64 bins to Path
-RUN setx /M PATH "C:\Program Files\CMake\cmake-3.26.0-rc1-windows-x86_64\bin;C:\mingw64\bin;%PATH%"
+RUN setx /M PATH "C:\CMake\cmake-3.26.0-rc1-windows-x86_64\bin;C:\mingw64\bin;%PATH%"
 
 COPY build.bat .
 ENTRYPOINT ["cmd", "/c", "build.bat"]
