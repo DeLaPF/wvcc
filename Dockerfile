@@ -12,6 +12,11 @@ RUN .\VulkanSDK-1.3.236.0-Installer.exe \
     --confirm-command \
     install
 
+# Mingw64
+RUN curl -LO https://github.com/niXman/mingw-builds-binaries/releases/download/12.2.0-rt_v10-rev2/x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2.7z
+RUN curl -LO https://www.7-zip.org/a/7zr.exe
+RUN 7zr x x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2.7z
+
 # CMake
 RUN mkdir CMake
 RUN cd CMake && curl -LO https://github.com/Kitware/CMake/releases/download/v3.26.0-rc1/cmake-3.26.0-rc1-windows-x86_64.zip
@@ -20,14 +25,11 @@ RUN cd CMake && tar -xf cmake-3.26.0-rc1-windows-x86_64.zip
 # Libaries
 RUN mkdir dev && mkdir dev\Libraries
 RUN cd dev\Libraries && curl -LO https://github.com/glfw/glfw/releases/download/3.3.8/glfw-3.3.8.bin.WIN64.zip
-RUN cd dev\Libraries && curl -LO https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
 RUN cd dev\Libraries && tar -xf glfw-3.3.8.bin.WIN64.zip
+RUN cd dev\Libraries && curl -LO https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
 RUN cd dev\Libraries && tar -xf glm-0.9.9.8.zip
-
-# Mingw64
-RUN curl -LO https://github.com/niXman/mingw-builds-binaries/releases/download/12.2.0-rt_v10-rev2/x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2.7z
-RUN curl -LO https://www.7-zip.org/a/7zr.exe
-RUN 7zr x x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2.7z
+RUN cd dev\Libraries && curl -LO https://github.com/oneapi-src/oneTBB/releases/download/v2021.7.0/oneapi-tbb-2021.7.0-win.zip
+RUN cd dev\Libraries && tar -xf oneapi-tbb-2021.7.0-win.zip
 
 # Add cmake and mingw64 bins to Path
 RUN setx /M PATH "C:\CMake\cmake-3.26.0-rc1-windows-x86_64\bin;C:\mingw64\bin;%PATH%"
