@@ -28,8 +28,6 @@ RUN cd dev\Libraries && curl -LO https://github.com/glfw/glfw/releases/download/
 RUN cd dev\Libraries && tar -xf glfw-3.3.8.bin.WIN64.zip
 RUN cd dev\Libraries && curl -LO https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
 RUN cd dev\Libraries && tar -xf glm-0.9.9.8.zip
-RUN cd dev\Libraries && curl -LO https://github.com/oneapi-src/oneTBB/releases/download/v2021.7.0/oneapi-tbb-2021.7.0-win.zip
-RUN cd dev\Libraries && tar -xf oneapi-tbb-2021.7.0-win.zip
 
 # Add cmake and mingw64 bins to Path
 RUN setx /M PATH "C:\CMake\cmake-3.26.0-rc1-windows-x86_64\bin;C:\mingw64\bin;%PATH%"
